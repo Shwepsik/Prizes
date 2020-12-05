@@ -15,6 +15,14 @@
 		38138EE9257C2A6E0025F540 /* SFProDisplayRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 38138EE8257C2A6E0025F540 /* SFProDisplayRegular.ttf */; };
 		38138EEC257C2ABB0025F540 /* Localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38138EEE257C2ABB0025F540 /* Localized.strings */; };
 		38138EF1257C2BC70025F540 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38138EF0257C2BC70025F540 /* R.generated.swift */; };
+		38138F1B257C2F1A0025F540 /* PrizesListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38138F0E257C2F1A0025F540 /* PrizesListCoordinator.swift */; };
+		38138F1C257C2F1A0025F540 /* PrizesListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38138F10257C2F1A0025F540 /* PrizesListInteractor.swift */; };
+		38138F1D257C2F1A0025F540 /* PrizesListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38138F12257C2F1A0025F540 /* PrizesListEntity.swift */; };
+		38138F1F257C2F1A0025F540 /* PrizesListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38138F15257C2F1A0025F540 /* PrizesListPresenter.swift */; };
+		38138F20257C2F1A0025F540 /* PrizesListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38138F17257C2F1A0025F540 /* PrizesListRouter.swift */; };
+		38138F21257C2F1A0025F540 /* PrizesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38138F19257C2F1A0025F540 /* PrizesListView.swift */; };
+		38138F22257C2F1A0025F540 /* PrizesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38138F1A257C2F1A0025F540 /* PrizesListViewController.swift */; };
+		38C5EF9D257C30B9003A922A /* PrizesList.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C5EF9C257C30B9003A922A /* PrizesList.xib */; };
 		A2FAA7D8B4D83D33B0D06062 /* Pods_Prizes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD6681467311E0EDF7D2E276 /* Pods_Prizes.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +38,14 @@
 		38138EE8257C2A6E0025F540 /* SFProDisplayRegular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFProDisplayRegular.ttf; sourceTree = "<group>"; };
 		38138EED257C2ABB0025F540 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localized.strings; sourceTree = "<group>"; };
 		38138EF0257C2BC70025F540 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		38138F0E257C2F1A0025F540 /* PrizesListCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrizesListCoordinator.swift; sourceTree = "<group>"; };
+		38138F10257C2F1A0025F540 /* PrizesListInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrizesListInteractor.swift; sourceTree = "<group>"; };
+		38138F12257C2F1A0025F540 /* PrizesListEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrizesListEntity.swift; sourceTree = "<group>"; };
+		38138F15257C2F1A0025F540 /* PrizesListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrizesListPresenter.swift; sourceTree = "<group>"; };
+		38138F17257C2F1A0025F540 /* PrizesListRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrizesListRouter.swift; sourceTree = "<group>"; };
+		38138F19257C2F1A0025F540 /* PrizesListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrizesListView.swift; sourceTree = "<group>"; };
+		38138F1A257C2F1A0025F540 /* PrizesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrizesListViewController.swift; sourceTree = "<group>"; };
+		38C5EF9C257C30B9003A922A /* PrizesList.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrizesList.xib; sourceTree = "<group>"; };
 		53E96AAE0C2A740DD403B658 /* Pods-Prizes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prizes.debug.xcconfig"; path = "Target Support Files/Pods-Prizes/Pods-Prizes.debug.xcconfig"; sourceTree = "<group>"; };
 		CD6681467311E0EDF7D2E276 /* Pods_Prizes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Prizes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -68,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				38138ECD257C29D60025F540 /* AppDelegate.swift */,
+				38138EF3257C2E670025F540 /* Flows */,
 				38138EE4257C2A0F0025F540 /* Resources */,
 			);
 			path = Prizes;
@@ -94,6 +111,77 @@
 				38138EE8257C2A6E0025F540 /* SFProDisplayRegular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		38138EF3257C2E670025F540 /* Flows */ = {
+			isa = PBXGroup;
+			children = (
+				38138F00257C2EE70025F540 /* PrizesList */,
+			);
+			path = Flows;
+			sourceTree = "<group>";
+		};
+		38138F00257C2EE70025F540 /* PrizesList */ = {
+			isa = PBXGroup;
+			children = (
+				38138F0D257C2F1A0025F540 /* Coordinator */,
+				38138F0F257C2F1A0025F540 /* Interactor */,
+				38138F11257C2F1A0025F540 /* Model */,
+				38138F14257C2F1A0025F540 /* Presenter */,
+				38138F16257C2F1A0025F540 /* Router */,
+				38138F18257C2F1A0025F540 /* View */,
+			);
+			name = PrizesList;
+			sourceTree = "<group>";
+		};
+		38138F0D257C2F1A0025F540 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				38138F0E257C2F1A0025F540 /* PrizesListCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		38138F0F257C2F1A0025F540 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				38138F10257C2F1A0025F540 /* PrizesListInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		38138F11257C2F1A0025F540 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				38138F12257C2F1A0025F540 /* PrizesListEntity.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		38138F14257C2F1A0025F540 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				38138F15257C2F1A0025F540 /* PrizesListPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		38138F16257C2F1A0025F540 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				38138F17257C2F1A0025F540 /* PrizesListRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		38138F18257C2F1A0025F540 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				38138F19257C2F1A0025F540 /* PrizesListView.swift */,
+				38138F1A257C2F1A0025F540 /* PrizesListViewController.swift */,
+				38C5EF9C257C30B9003A922A /* PrizesList.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		D308ECD423A0719DA83090C5 /* Pods */ = {
@@ -178,6 +266,7 @@
 				38138EE9257C2A6E0025F540 /* SFProDisplayRegular.ttf in Resources */,
 				38138EEC257C2ABB0025F540 /* Localized.strings in Resources */,
 				38138EDA257C29D80025F540 /* Assets.xcassets in Resources */,
+				38C5EF9D257C30B9003A922A /* PrizesList.xib in Resources */,
 				38138EE6257C2A280025F540 /* Colors.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -252,7 +341,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				38138ED8257C29D60025F540 /* Prizes.xcdatamodeld in Sources */,
+				38138F20257C2F1A0025F540 /* PrizesListRouter.swift in Sources */,
+				38138F1C257C2F1A0025F540 /* PrizesListInteractor.swift in Sources */,
 				38138ECE257C29D60025F540 /* AppDelegate.swift in Sources */,
+				38138F1F257C2F1A0025F540 /* PrizesListPresenter.swift in Sources */,
+				38138F1B257C2F1A0025F540 /* PrizesListCoordinator.swift in Sources */,
+				38138F21257C2F1A0025F540 /* PrizesListView.swift in Sources */,
+				38138F22257C2F1A0025F540 /* PrizesListViewController.swift in Sources */,
+				38138F1D257C2F1A0025F540 /* PrizesListEntity.swift in Sources */,
 				38138EF1257C2BC70025F540 /* R.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
