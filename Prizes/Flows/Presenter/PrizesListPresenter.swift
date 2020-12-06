@@ -72,3 +72,18 @@ extension PrizesListPresenter: PersistenceServiceDelegate {
     func controllerProcessingUpdate(_ persistenceService: PersistenceService, type: PersistenceService.BatchUpdate) {
     }
 }
+
+// MARK: - Private
+
+private extension PrizesListPresenter {
+    
+    func presentOverchargesAlert() {
+        let okAction = UIAlertAction(title: R.string.localized.ok(), style: .default) { _ in }
+        
+        router.presentAlertController(with: .init(
+            message: R.string.localized.overchargesDescription()),
+            style: .alert,
+            actions: [okAction]
+        )
+    }
+}

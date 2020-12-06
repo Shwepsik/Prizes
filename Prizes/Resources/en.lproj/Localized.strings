@@ -16,3 +16,8 @@
 "phone" = "Phone";
 "car" = "Car";
 "ball" = "Ball";
+
+// MARK: - Alert
+
+"ok" = "OK";
+"overchargesDescription" = "You have exceeded the allowed limit";
