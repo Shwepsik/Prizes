@@ -81,7 +81,11 @@ extension PrizesListInteractor: PrizesListInteracting {
         var prizes = persistenceService.fetchSelectedObjects()
         let prizesAmount = prizes.map { $0.price }.reduce(0, +)
         
-        guard prizesAmount > maxAvailableAmount else { return }
+        guard prizesAmount > maxAvailableAmount else {
+            output.updateAvailableAmount(amount: availableAmount())
+            return
+        }
+        
         var overcharges = prizesAmount - maxAvailableAmount
         
         prizes = prizes.filter { $0 != entity }

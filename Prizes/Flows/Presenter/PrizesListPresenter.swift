@@ -14,6 +14,8 @@ protocol PrizesListPresenting: AnyObject {
     func deleteRow(at indexPath: IndexPath)
     func didSelectRow(at indexPath: IndexPath)
     
+    func plusButtonTapped()
+    
     func viewDidLoad()
 }
 
@@ -50,6 +52,10 @@ extension PrizesListPresenter: PrizesListPresenting {
     
     func didSelectRow(at indexPath: IndexPath) {
         interactor.didSelectRow(at: indexPath)
+    }
+    
+    func plusButtonTapped() {
+        router.navigateToCreatePrizeScreen()
     }
     
     func viewDidLoad() {

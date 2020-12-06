@@ -14,6 +14,7 @@ protocol PrizesListRouting {
     func presentAlertController(with viewModel: UIViewController.AlertViewModel?,
                                 style: UIAlertController.Style,
                                 actions: [UIAlertAction])
+    func navigateToCreatePrizeScreen()
 }
 
 final class PrizesListRouter {
@@ -38,5 +39,8 @@ extension PrizesListRouter: PrizesListRouting {
         viewController.showAlertController(with: viewModel,
                                            style: style,
                                            actions: actions)
+    }
+    
+    func navigateToCreatePrizeScreen() {
     }
 }

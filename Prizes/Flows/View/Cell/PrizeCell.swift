@@ -27,7 +27,6 @@ final class PrizeCell: UITableViewCell {
         super.prepareForReuse()
         nameLabel.text = nil
         priceLabel.text = nil
-        checkmarkImage.image = nil
     }
     
     // MARK: - Public
@@ -35,7 +34,7 @@ final class PrizeCell: UITableViewCell {
     func render(viewModel: ViewModel) {
         nameLabel.text = viewModel.name
         priceLabel.text = viewModel.price
-        checkmarkImage.image = viewModel.isSelected ? .checkmark : UIImage()
+        checkmarkImage.isHidden = !viewModel.isSelected
     }
 }
 
@@ -46,6 +45,7 @@ private extension PrizeCell {
     func configureCell() {
         nameLabel.textColor = .orange
         priceLabel.textColor = .orange
+        checkmarkImage.image = .checkmark
     }
 }
 
@@ -57,6 +57,7 @@ extension PrizeCell {
         let name: String
         let price: String
         let isSelected: Bool
+        let height: CGFloat = 55
     }
 }
  

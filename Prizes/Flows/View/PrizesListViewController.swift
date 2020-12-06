@@ -57,6 +57,11 @@ extension PrizesListViewController: UITableViewDelegate {
         guard editingStyle == .delete else { return }
         presenter.deleteRow(at: indexPath)
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let viewModel = presenter.item(at: indexPath)
+        return viewModel.height
+    }
 }
 
 // MARK: - View logic
@@ -100,5 +105,14 @@ private extension PrizesListViewController {
         availableAmountLabel.textAlignment = .center
         availableAmountLabel.font = R.font.sfProDisplayRegular(size: 22)
         availableAmountLabel.textColor = .orange
+        
+        let rbb = UIBarButtonItem(image: .add, style: .done, target: self, action: #selector(plusButtonTapped))
+        navigationItem.rightBarButtonItem = rbb
+        title = R.string.localized.prizesListNavTitle()
+    }
+    
+    @objc
+    func plusButtonTapped() {
+        presenter.plusButtonTapped()
     }
 }
