@@ -20,7 +20,6 @@ final class PrizesListViewController: UIViewController {
         super.viewDidLoad()
 
         // TODO: Ask the Presenter to do some work
-        presenter.presentSomething()
     }
 }
 

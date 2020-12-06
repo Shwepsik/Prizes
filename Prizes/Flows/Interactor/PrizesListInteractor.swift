@@ -26,10 +26,10 @@ final class PrizesListInteractor {
     // MARK: - Public properties
     
     weak var output: PrizesListInteractorOutput!
+    let persistenceService: PersistenceStore
     
     // MARK: - Private properties
     
-    private let persistenceService: PersistenceStore
     private var defaultPrizes = [
         PrizeEntity(name: R.string.localized.tShirt(), price: 15),
         PrizeEntity(name: R.string.localized.sneakers(), price: 30),

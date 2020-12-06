@@ -24,6 +24,7 @@ struct PrizesListCoordinator {
         interactor.output = presenter
         
         presenter.interactor = interactor
+        interactor.persistenceService.delegate = presenter
         
         viewController.presenter = presenter
         
