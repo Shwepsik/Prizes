@@ -10,7 +10,7 @@ import UIKit
 
 protocol PrizesListPresenting: AnyObject {
     func numberOfRows(in section: Int) -> Int
-    func item(at indexPath: IndexPath)
+    func item(at indexPath: IndexPath) -> PrizeCell.ViewModel
     func deleteRow(at indexPath: IndexPath)
     func didSelectRow(at indexPath: IndexPath)
     
@@ -34,8 +34,14 @@ extension PrizesListPresenter: PrizesListPresenting {
         interactor.numberOfRows(in: section)
     }
     
-    func item(at indexPath: IndexPath) {
-        interactor.item(at: indexPath)
+    func item(at indexPath: IndexPath) -> PrizeCell.ViewModel {
+        let item = interactor.item(at: indexPath)
+        let viewModel: PrizeCell.ViewModel = .init(
+            name: item.name,
+            price: String(item.price),
+            isSelected: item.isSelected
+        )
+        return viewModel
     }
     
     func deleteRow(at indexPath: IndexPath) {

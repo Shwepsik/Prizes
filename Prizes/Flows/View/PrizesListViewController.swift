@@ -37,7 +37,10 @@ extension PrizesListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.prizeCell, for: indexPath)!
+        let viewModel = presenter.item(at: indexPath)
+        cell.render(viewModel: viewModel)
+        return cell
     }
 }
 
@@ -91,6 +94,7 @@ private extension PrizesListViewController {
     func configureView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(R.nib.prizeCell)
         
         availableAmountLabel.textAlignment = .center
         availableAmountLabel.font = R.font.sfProDisplayRegular(size: 22)
