@@ -37,12 +37,7 @@ extension PrizesListPresenter: PrizesListPresenting {
 // MARK: - PrizesListInteractorOutput
 
 extension PrizesListPresenter: PrizesListInteractorOutput {
-
-    func handleSomethingFromInteractor() {
-
-        // TODO: Format the response from the Interactor and pass the result back to the view
-
-        // let viewModel = PrizesListViewController.ViewModel()
-        // view.displaySomething(viewModel: viewModel)
+    
+    func expensivePrizeSelected() {
     }
 }

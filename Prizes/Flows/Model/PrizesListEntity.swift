@@ -26,3 +26,12 @@ extension PrizesListInteractor {
         }
     }
 }
+
+// MARK: - Equatable
+
+extension PrizesListInteractor.PrizeEntity: Equatable {
+    
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.uuid == rhs.uuid
+    }
+}

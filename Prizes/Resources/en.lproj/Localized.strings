@@ -5,3 +5,14 @@
   Created by Valerii on 05.12.2020.
   Copyright © 2020 Valerii. All rights reserved.
 */
+
+// MARK: - Prizes
+
+"tShirt" = "T-Shirt";
+"sneakers" = "Sneakers";
+"headphones" = "Headphones";
+"shorts" = "Shorts";
+"cap" = "Cap";
+"phone" = "Phone";
+"car" = "Car";
+"ball" = "Ball";
