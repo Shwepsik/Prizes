@@ -9,6 +9,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PrizesListViewController" customModule="Prizes" customModuleProvider="target">
             <connections>
+                <outlet property="availableAmountLabel" destination="aIY-5L-24Y" id="xhp-Lg-ocQ"/>
+                <outlet property="tableView" destination="GVe-u4-fFk" id="C1N-v9-0lL"/>
                 <outlet property="view" destination="iN0-l3-epB" id="FFT-8P-pwB"/>
             </connections>
         </placeholder>
@@ -16,9 +18,33 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GVe-u4-fFk">
+                    <rect key="frame" x="0.0" y="74" width="414" height="788"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIY-5L-24Y">
+                    <rect key="frame" x="0.0" y="44" width="414" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="G5g-OS-4gM"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="GVe-u4-fFk" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="KEH-wS-0em"/>
+                <constraint firstItem="aIY-5L-24Y" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="aw1-Gg-hAe"/>
+                <constraint firstItem="aIY-5L-24Y" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="cf4-J8-ZOS"/>
+                <constraint firstItem="aIY-5L-24Y" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="jli-2g-0Wh"/>
+                <constraint firstItem="GVe-u4-fFk" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="n1w-wK-fmM"/>
+                <constraint firstItem="GVe-u4-fFk" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="znU-6k-nQa"/>
+                <constraint firstItem="GVe-u4-fFk" firstAttribute="top" secondItem="aIY-5L-24Y" secondAttribute="bottom" id="zpZ-Xe-J4O"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="139" y="130"/>
+            <point key="canvasLocation" x="137.68115942028987" y="129.91071428571428"/>
         </view>
     </objects>
 </document>

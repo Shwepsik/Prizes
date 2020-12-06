@@ -21,3 +21,7 @@
 
 "ok" = "OK";
 "overchargesDescription" = "You have exceeded the allowed limit";
+
+// MARK: -
+
+"availableAmount" = "Available amount: - %@";

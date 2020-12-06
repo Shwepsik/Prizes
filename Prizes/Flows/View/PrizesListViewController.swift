@@ -9,7 +9,12 @@
 import UIKit
 
 final class PrizesListViewController: UIViewController {
-
+    
+    // MARK: - Outlets
+    
+    @IBOutlet private var tableView: UITableView!
+    @IBOutlet private var availableAmountLabel: UILabel!
+    
     // MARK: - Public properties
 
     var presenter: PrizesListPresenting!
@@ -18,19 +23,77 @@ final class PrizesListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureView()
+        presenter.viewDidLoad()
+    }
+}
 
-        // TODO: Ask the Presenter to do some work
+// MARK: - UITableViewDataSource
+
+extension PrizesListViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        presenter.numberOfRows(in: section)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        UITableViewCell()
+    }
+}
+
+// MARK: - UITableViewDelegate
+
+extension PrizesListViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.didSelectRow(at: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard editingStyle == .delete else { return }
+        presenter.deleteRow(at: indexPath)
     }
 }
 
 // MARK: - View logic
 
 extension PrizesListViewController: PrizesListView {
+    
+    func beginUpdates() {
+        tableView.beginUpdates()
+    }
+    
+    func endUpdates() {
+        tableView.endUpdates()
+    }
+    
+    func insertRow(at indexPath: IndexPath) {
+        tableView.insertRows(at: [indexPath], with: .left)
+    }
+    
+    func deleteRow(at indexPath: IndexPath) {
+        tableView.deleteRows(at: [indexPath], with: .left)
+    }
+    
+    func updateRow(at indexPath: IndexPath) {
+        tableView.reloadRows(at: [indexPath], with: .none)
+    }
+    
+    func render(viewModel: ViewModel) {
+        availableAmountLabel.text = R.string.localized.availableAmount(viewModel.availableAmount)
+    }
+}
 
-    func displaySomething(viewModel: ViewModel) {
+// MARK: - Private
 
-        // TODO: Display the result from the Presenter
-
-        // nameTextField.text = viewModel.name
+private extension PrizesListViewController {
+    
+    func configureView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        availableAmountLabel.textAlignment = .center
+        availableAmountLabel.font = R.font.sfProDisplayRegular(size: 22)
+        availableAmountLabel.textColor = .orange
     }
 }

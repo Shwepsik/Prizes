@@ -56,6 +56,11 @@ extension PrizesListPresenter: PrizesListPresenting {
 extension PrizesListPresenter: PrizesListInteractorOutput {
     
     func expensivePrizeSelected() {
+        presentOverchargesAlert()
+    }
+    
+    func updateAvailableAmount(amount: Double) {
+        view.render(viewModel: .init(availableAmount: String(amount)))
     }
 }
 
@@ -64,12 +69,22 @@ extension PrizesListPresenter: PrizesListInteractorOutput {
 extension PrizesListPresenter: PersistenceServiceDelegate {
     
     func controllerWillChangeContent(_ persistenceService: PersistenceService) {
+        view.beginUpdates()
     }
     
     func controllerDidChangeContent(_ persistenceService: PersistenceService) {
+        view.endUpdates()
     }
     
     func controllerProcessingUpdate(_ persistenceService: PersistenceService, type: PersistenceService.BatchUpdate) {
+        switch type {
+        case .insert(let indexPath):
+            view.insertRow(at: indexPath)
+        case .delete(let indexPath):
+            view.deleteRow(at: indexPath)
+        case .update(let indexPath):
+            view.updateRow(at: indexPath)
+        }
     }
 }
 

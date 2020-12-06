@@ -9,14 +9,18 @@
 import UIKit
 
 protocol PrizesListView: AnyObject {
-
-    func displaySomething(viewModel: PrizesListViewController.ViewModel)
+    func beginUpdates()
+    func endUpdates()
+    func insertRow(at indexPath: IndexPath)
+    func deleteRow(at indexPath: IndexPath)
+    func updateRow(at indexPath: IndexPath)
+    
+    func render(viewModel: PrizesListViewController.ViewModel)
 }
 
 extension PrizesListViewController {
     
     struct ViewModel {
-        
-        // TODO: Create view model
+        let availableAmount: String
     }
 }

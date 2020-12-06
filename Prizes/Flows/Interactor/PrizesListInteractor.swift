@@ -19,6 +19,7 @@ protocol PrizesListInteracting: AnyObject {
 
 protocol PrizesListInteractorOutput: AnyObject {
     func expensivePrizeSelected()
+    func updateAvailableAmount(amount: Double)
 }
 
 final class PrizesListInteractor {
@@ -40,7 +41,7 @@ final class PrizesListInteractor {
         PrizeEntity(name: R.string.localized.car(), price: 1000),
         PrizeEntity(name: R.string.localized.ball(), price: 25)
     ]
-    private let maxAmountAvailable: Double = 100
+    private let maxAvailableAmount: Double = 100
     
     // MARK: - Init
     
@@ -70,7 +71,7 @@ extension PrizesListInteractor: PrizesListInteracting {
     func didSelectRow(at indexPath: IndexPath) {
         let entity = item(at: indexPath)
         
-        guard entity.price < maxAmountAvailable else {
+        guard entity.price < maxAvailableAmount else {
             output.expensivePrizeSelected()
             return
         }
@@ -80,8 +81,8 @@ extension PrizesListInteractor: PrizesListInteracting {
         var prizes = persistenceService.fetchSelectedObjects()
         let prizesAmount = prizes.map { $0.price }.reduce(0, +)
         
-        guard prizesAmount > maxAmountAvailable else { return }
-        var overcharges = prizesAmount - maxAmountAvailable
+        guard prizesAmount > maxAvailableAmount else { return }
+        var overcharges = prizesAmount - maxAvailableAmount
         
         prizes = prizes.filter { $0 != entity }
         
@@ -91,11 +92,26 @@ extension PrizesListInteractor: PrizesListInteracting {
             guard overcharges <= 0 else { continue }
             break
         }
+        
+        output.updateAvailableAmount(amount: availableAmount())
     }
     
     func saveDefaultPrizes() {
-        guard persistenceService.isRecordsAreEmpty() else { return }
+        
+        guard persistenceService.isRecordsAreEmpty() else {
+            output.updateAvailableAmount(amount: availableAmount())
+            return
+        }
+        
+        output.updateAvailableAmount(amount: maxAvailableAmount)
         defaultPrizes = defaultPrizes.sorted(by: { $0.price < $1.price })
         defaultPrizes.forEach { persistenceService.save(entity: $0) }
+    }
+    
+    func availableAmount() -> Double {
+        let prizes = persistenceService.fetchSelectedObjects()
+        let prizesAmount = prizes.map { $0.price }.reduce(0, +)
+        let availableAmount = maxAvailableAmount - prizesAmount
+        return availableAmount
     }
 }
