@@ -22,7 +22,10 @@
 		38138F20257C2F1A0025F540 /* PrizesListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38138F17257C2F1A0025F540 /* PrizesListRouter.swift */; };
 		38138F21257C2F1A0025F540 /* PrizesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38138F19257C2F1A0025F540 /* PrizesListView.swift */; };
 		38138F22257C2F1A0025F540 /* PrizesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38138F1A257C2F1A0025F540 /* PrizesListViewController.swift */; };
+		38BA5640257D7741007B7D57 /* Prize+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BA563E257D7741007B7D57 /* Prize+CoreDataClass.swift */; };
+		38BA5641257D7741007B7D57 /* Prize+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BA563F257D7741007B7D57 /* Prize+CoreDataProperties.swift */; };
 		38C5EF9D257C30B9003A922A /* PrizesList.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C5EF9C257C30B9003A922A /* PrizesList.xib */; };
+		38C5EFA1257C38FA003A922A /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C5EFA0257C38FA003A922A /* PersistenceService.swift */; };
 		A2FAA7D8B4D83D33B0D06062 /* Pods_Prizes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD6681467311E0EDF7D2E276 /* Pods_Prizes.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,7 +48,10 @@
 		38138F17257C2F1A0025F540 /* PrizesListRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrizesListRouter.swift; sourceTree = "<group>"; };
 		38138F19257C2F1A0025F540 /* PrizesListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrizesListView.swift; sourceTree = "<group>"; };
 		38138F1A257C2F1A0025F540 /* PrizesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrizesListViewController.swift; sourceTree = "<group>"; };
+		38BA563E257D7741007B7D57 /* Prize+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Prize+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		38BA563F257D7741007B7D57 /* Prize+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Prize+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		38C5EF9C257C30B9003A922A /* PrizesList.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrizesList.xib; sourceTree = "<group>"; };
+		38C5EFA0257C38FA003A922A /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		53E96AAE0C2A740DD403B658 /* Pods-Prizes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prizes.debug.xcconfig"; path = "Target Support Files/Pods-Prizes/Pods-Prizes.debug.xcconfig"; sourceTree = "<group>"; };
 		CD6681467311E0EDF7D2E276 /* Pods_Prizes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Prizes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -84,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				38138ECD257C29D60025F540 /* AppDelegate.swift */,
+				38C5EF9E257C3893003A922A /* Services */,
 				38138EF3257C2E670025F540 /* Flows */,
 				38138EE4257C2A0F0025F540 /* Resources */,
 			);
@@ -97,7 +104,6 @@
 				38138EE7257C2A470025F540 /* Fonts */,
 				38138EDE257C29D90025F540 /* Info.plist */,
 				38138EDB257C29D90025F540 /* LaunchScreen.storyboard */,
-				38138ED6257C29D60025F540 /* Prizes.xcdatamodeld */,
 				38138ED9257C29D80025F540 /* Assets.xcassets */,
 				38138EE5257C2A280025F540 /* Colors.xcassets */,
 				38138EEE257C2ABB0025F540 /* Localized.strings */,
@@ -182,6 +188,33 @@
 				38C5EF9C257C30B9003A922A /* PrizesList.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		38C5EF9E257C3893003A922A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				38C5EF9F257C38CD003A922A /* Persistence */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		38C5EF9F257C38CD003A922A /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				38C5EFA2257C3B0F003A922A /* Model */,
+				38C5EFA0257C38FA003A922A /* PersistenceService.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		38C5EFA2257C3B0F003A922A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				38BA563E257D7741007B7D57 /* Prize+CoreDataClass.swift */,
+				38BA563F257D7741007B7D57 /* Prize+CoreDataProperties.swift */,
+				38138ED6257C29D60025F540 /* Prizes.xcdatamodeld */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		D308ECD423A0719DA83090C5 /* Pods */ = {
@@ -343,12 +376,15 @@
 				38138ED8257C29D60025F540 /* Prizes.xcdatamodeld in Sources */,
 				38138F20257C2F1A0025F540 /* PrizesListRouter.swift in Sources */,
 				38138F1C257C2F1A0025F540 /* PrizesListInteractor.swift in Sources */,
+				38C5EFA1257C38FA003A922A /* PersistenceService.swift in Sources */,
+				38BA5641257D7741007B7D57 /* Prize+CoreDataProperties.swift in Sources */,
 				38138ECE257C29D60025F540 /* AppDelegate.swift in Sources */,
 				38138F1F257C2F1A0025F540 /* PrizesListPresenter.swift in Sources */,
 				38138F1B257C2F1A0025F540 /* PrizesListCoordinator.swift in Sources */,
 				38138F21257C2F1A0025F540 /* PrizesListView.swift in Sources */,
 				38138F22257C2F1A0025F540 /* PrizesListViewController.swift in Sources */,
 				38138F1D257C2F1A0025F540 /* PrizesListEntity.swift in Sources */,
+				38BA5640257D7741007B7D57 /* Prize+CoreDataClass.swift in Sources */,
 				38138EF1257C2BC70025F540 /* R.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
