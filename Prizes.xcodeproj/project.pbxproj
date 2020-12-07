@@ -23,8 +23,8 @@
 		38138F21257C2F1A0025F540 /* PrizesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38138F19257C2F1A0025F540 /* PrizesListView.swift */; };
 		38138F22257C2F1A0025F540 /* PrizesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38138F1A257C2F1A0025F540 /* PrizesListViewController.swift */; };
 		3878C824257E3D9D00F2497E /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3878C823257E3D9D00F2497E /* AppFont.swift */; };
-		38BA5640257D7741007B7D57 /* Prize+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BA563E257D7741007B7D57 /* Prize+CoreDataClass.swift */; };
-		38BA5641257D7741007B7D57 /* Prize+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BA563F257D7741007B7D57 /* Prize+CoreDataProperties.swift */; };
+		3878C835257E548500F2497E /* Prize+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3878C833257E548500F2497E /* Prize+CoreDataProperties.swift */; };
+		3878C836257E548500F2497E /* Prize+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3878C834257E548500F2497E /* Prize+CoreDataClass.swift */; };
 		38BA5644257D93B6007B7D57 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BA5643257D93B6007B7D57 /* UIViewController+Extension.swift */; };
 		38BA5647257D9E49007B7D57 /* PrizeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BA5646257D9E49007B7D57 /* PrizeCell.xib */; };
 		38BA5649257D9E51007B7D57 /* PrizeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BA5648257D9E51007B7D57 /* PrizeCell.swift */; };
@@ -61,8 +61,8 @@
 		38138F19257C2F1A0025F540 /* PrizesListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrizesListView.swift; sourceTree = "<group>"; };
 		38138F1A257C2F1A0025F540 /* PrizesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrizesListViewController.swift; sourceTree = "<group>"; };
 		3878C823257E3D9D00F2497E /* AppFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFont.swift; sourceTree = "<group>"; };
-		38BA563E257D7741007B7D57 /* Prize+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Prize+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		38BA563F257D7741007B7D57 /* Prize+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Prize+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		3878C833257E548500F2497E /* Prize+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Prize+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3878C834257E548500F2497E /* Prize+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Prize+CoreDataClass.swift"; sourceTree = "<group>"; };
 		38BA5643257D93B6007B7D57 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		38BA5646257D9E49007B7D57 /* PrizeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrizeCell.xib; sourceTree = "<group>"; };
 		38BA5648257D9E51007B7D57 /* PrizeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrizeCell.swift; sourceTree = "<group>"; };
@@ -335,8 +335,8 @@
 		38C5EFA2257C3B0F003A922A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				38BA563E257D7741007B7D57 /* Prize+CoreDataClass.swift */,
-				38BA563F257D7741007B7D57 /* Prize+CoreDataProperties.swift */,
+				3878C834257E548500F2497E /* Prize+CoreDataClass.swift */,
+				3878C833257E548500F2497E /* Prize+CoreDataProperties.swift */,
 				38138ED6257C29D60025F540 /* Prizes.xcdatamodeld */,
 			);
 			path = Model;
@@ -510,17 +510,17 @@
 				38C5EFA1257C38FA003A922A /* PersistenceService.swift in Sources */,
 				38BE8942257DA756003A427E /* CreatePrizeViewController.swift in Sources */,
 				38BA5644257D93B6007B7D57 /* UIViewController+Extension.swift in Sources */,
-				38BA5641257D7741007B7D57 /* Prize+CoreDataProperties.swift in Sources */,
 				38138ECE257C29D60025F540 /* AppDelegate.swift in Sources */,
 				38BE893E257DA756003A427E /* CreatePrizeCoordinator.swift in Sources */,
 				38138F1F257C2F1A0025F540 /* PrizesListPresenter.swift in Sources */,
 				38138F1B257C2F1A0025F540 /* PrizesListCoordinator.swift in Sources */,
 				38138F21257C2F1A0025F540 /* PrizesListView.swift in Sources */,
 				38138F22257C2F1A0025F540 /* PrizesListViewController.swift in Sources */,
+				3878C836257E548500F2497E /* Prize+CoreDataClass.swift in Sources */,
 				38BE8944257DA756003A427E /* CreatePrizeEntity.swift in Sources */,
 				38BE8940257DA756003A427E /* CreatePrizePresenter.swift in Sources */,
+				3878C835257E548500F2497E /* Prize+CoreDataProperties.swift in Sources */,
 				38138F1D257C2F1A0025F540 /* PrizesListEntity.swift in Sources */,
-				38BA5640257D7741007B7D57 /* Prize+CoreDataClass.swift in Sources */,
 				38BE8943257DA756003A427E /* CreatePrizeView.swift in Sources */,
 				38138EF1257C2BC70025F540 /* R.generated.swift in Sources */,
 			);
