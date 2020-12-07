@@ -11,7 +11,12 @@ import Foundation
 extension CreatePrizeInteractor {
 
     struct Entity {
-
-        // TODO: Create entity
+        let price: Double
+        let name: String
+        
+        init(price: Double = 0.0, name: String = "") {
+            self.price = price
+            self.name = name
+        }
     }
 }

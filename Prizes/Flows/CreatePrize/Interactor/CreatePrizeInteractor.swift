@@ -9,13 +9,14 @@
 import Foundation
 
 protocol CreatePrizeInteracting: AnyObject {
-
-    func doSomething()
+    func updatePrice(price: Double)
+    func updateName(name: String)
+    func validateEntity()
 }
 
 protocol CreatePrizeInteractorOutput: AnyObject {
-
-    func handleSomethingFromInteractor()
+    func didFailValidatePrice()
+    func didFailValidateName()
 }
 
 final class CreatePrizeInteractor {
@@ -23,16 +24,40 @@ final class CreatePrizeInteractor {
     // MARK: - Public properties
     
     weak var output: CreatePrizeInteractorOutput!
+    
+    private(set) var prizeEntity: CreatePrizeInteractor.Entity = .init()
 }
 
 // MARK: - Business logic
 
 extension CreatePrizeInteractor: CreatePrizeInteracting {
-
-    func doSomething() {
     
-        // NOTE: Do some work
-
-        output?.handleSomethingFromInteractor()
+    func updatePrice(price: Double) {
+        guard price != 0 else {
+            output.didFailValidatePrice()
+            return
+        }
+        
+        prizeEntity = CreatePrizeInteractor.Entity(price: price, name: prizeEntity.name)
+    }
+    
+    func updateName(name: String) {
+        guard !name.isEmpty else {
+            output.didFailValidateName()
+            return
+        }
+        prizeEntity = .init(price: prizeEntity.price, name: name)
+    }
+    
+    func validateEntity() {
+        guard !prizeEntity.name.isEmpty else {
+            output.didFailValidateName()
+            return
+        }
+        
+        guard prizeEntity.price != 0 else {
+            output.didFailValidatePrice()
+            return
+        }
     }
 }

@@ -38,12 +38,10 @@ extension CreatePrizePresenter: CreatePrizePresenting {
 // MARK: - CreatePrizeInteractorOutput
 
 extension CreatePrizePresenter: CreatePrizeInteractorOutput {
-
-    func handleSomethingFromInteractor() {
-
-        // TODO: Format the response from the Interactor and pass the result back to the view
-
-        // let viewModel = CreatePrizeViewController.ViewModel()
-        // view.displaySomething(viewModel: viewModel)
+    
+    func didFailValidatePrice() {
+    }
+    
+    func didFailValidateName() {
     }
 }

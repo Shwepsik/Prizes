@@ -42,5 +42,7 @@ extension PrizesListRouter: PrizesListRouting {
     }
     
     func navigateToCreatePrizeScreen() {
+        let controller = CreatePrizeCoordinator().configureFlow()
+        viewController.present(controller, animated: true)
     }
 }
