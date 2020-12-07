@@ -10,7 +10,7 @@ import UIKit
 
 protocol CreatePrizeView: AnyObject {
 
-    func updatePriceWaringLabel(warning: String)
-    func updateNameWarningLabel(warning: String)
+    func updatePriceDescriptionLabel(text: String)
+    func updateNameDescriptionLabel(text: String)
     func doneBarButton(isEnabled: Bool)
 }

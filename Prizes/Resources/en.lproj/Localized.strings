@@ -22,11 +22,20 @@
 "ok" = "OK";
 "overchargesDescription" = "You have exceeded the allowed limit";
 
-// MARK: -
+// MARK: - Shared
 
 "availableAmount" = "Available amount: - %@";
-"prizesListNavTitle" = "Prizes";
+"prizes" = "Prizes";
 "done" = "Done";
 "requiredField" = "Required field";
 "enterName" = "Enter name";
 "enterPrice" = "Enter price";
+"createPrize" = "Create prize";
+
+// MARK: - Validation
+
+"priceCantBeEqualToZero" = "Price can't be equal to zero";
+"incorectTextInput" = "Incorect text input";
+"nameCantBeEmpty" = "Name can't be empty";
+"priceCantBeEmpty" = "Price can't be empty";
+

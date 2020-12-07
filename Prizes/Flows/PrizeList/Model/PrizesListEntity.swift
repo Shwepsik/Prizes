@@ -10,7 +10,7 @@ import Foundation
 
 extension PrizesListInteractor {
     
-    struct PrizeEntity {
+    struct Entity {
         let name: String
         let price: Double
         let uuid: UUID
@@ -29,7 +29,7 @@ extension PrizesListInteractor {
 
 // MARK: - Equatable
 
-extension PrizesListInteractor.PrizeEntity: Equatable {
+extension PrizesListInteractor.Entity: Equatable {
     
     static func == (lhs: Self, rhs: Self) -> Bool {
         return lhs.uuid == rhs.uuid

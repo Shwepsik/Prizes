@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreatePrizeViewController" customModule="Prizes" customModuleProvider="target">
             <connections>
+                <outlet property="nameDescriptionLabel" destination="7g6-uo-Kp3" id="wFm-yW-uRp"/>
                 <outlet property="nameTextField" destination="K2T-AY-rGe" id="HXy-Kj-h8N"/>
-                <outlet property="nameWarningLabel" destination="7g6-uo-Kp3" id="xSo-lp-Bb4"/>
+                <outlet property="priceDescriptionLabel" destination="4cf-jC-RTq" id="oDl-FL-0Fc"/>
                 <outlet property="priceTextField" destination="sNr-ex-8XW" id="eef-z6-9pr"/>
-                <outlet property="priceWarningLabel" destination="4cf-jC-RTq" id="VCQ-7R-54E"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Lhy-pw-2UN"/>
             </connections>
         </placeholder>
@@ -38,13 +40,14 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4cf-jC-RTq">
-                    <rect key="frame" x="20" y="219" width="42" height="21"/>
+                    <rect key="frame" x="20" y="219.5" width="42" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="4cf-jC-RTq" firstAttribute="top" secondItem="sNr-ex-8XW" secondAttribute="bottom" constant="8" id="4WC-XO-lTz"/>
                 <constraint firstItem="K2T-AY-rGe" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="46" id="7Sk-9g-Z95"/>
@@ -53,12 +56,16 @@
                 <constraint firstItem="7g6-uo-Kp3" firstAttribute="leading" secondItem="K2T-AY-rGe" secondAttribute="leading" constant="4" id="SKI-WZ-xoi"/>
                 <constraint firstItem="sNr-ex-8XW" firstAttribute="leading" secondItem="K2T-AY-rGe" secondAttribute="leading" id="Vlc-ml-n5K"/>
                 <constraint firstItem="7g6-uo-Kp3" firstAttribute="top" secondItem="K2T-AY-rGe" secondAttribute="bottom" constant="8" id="Wcb-ZD-Ire"/>
-                <constraint firstItem="sNr-ex-8XW" firstAttribute="top" secondItem="7g6-uo-Kp3" secondAttribute="bottom" constant="25" id="eg0-md-KDo"/>
+                <constraint firstItem="sNr-ex-8XW" firstAttribute="top" secondItem="K2T-AY-rGe" secondAttribute="bottom" constant="53.5" id="eMv-Gt-2NF"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="K2T-AY-rGe" secondAttribute="trailing" constant="16" id="jVc-bY-uUd"/>
                 <constraint firstItem="4cf-jC-RTq" firstAttribute="leading" secondItem="sNr-ex-8XW" secondAttribute="leading" constant="4" id="t0h-dz-2ZT"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="141" y="92"/>
         </view>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

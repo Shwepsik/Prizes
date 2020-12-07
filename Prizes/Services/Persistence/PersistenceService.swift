@@ -9,15 +9,15 @@
 import CoreData
 
 protocol PersistenceStore: AnyObject {
-    func fetch(at indexPath: IndexPath) -> PrizesListInteractor.PrizeEntity
-    func save(entity: PrizesListInteractor.PrizeEntity)
+    func fetch(at indexPath: IndexPath) -> PrizesListInteractor.Entity
+    func save(entity: PrizesListInteractor.Entity)
     func delete(at indexPath: IndexPath)
     
-    func fetchSelectedObjects() -> [PrizesListInteractor.PrizeEntity]
+    func fetchSelectedObjects() -> [PrizesListInteractor.Entity]
     
-    func updateRecord(entity: PrizesListInteractor.PrizeEntity)
+    func updateRecord(entity: PrizesListInteractor.Entity)
     
-    func isRecordsAreEmpty() -> Bool
+    func areRecordsEmpty() -> Bool
     
     var delegate: PersistenceServiceDelegate? { get set }
     var fetchedResultsController: NSFetchedResultsController<Prize>! { get }
@@ -58,9 +58,9 @@ final class PersistenceService: NSObject {
 
 extension PersistenceService: PersistenceStore {
     
-    func fetch(at indexPath: IndexPath) -> PrizesListInteractor.PrizeEntity {
+    func fetch(at indexPath: IndexPath) -> PrizesListInteractor.Entity {
         let fetchedObject = fetchedResultsController.object(at: indexPath)
-        let entity: PrizesListInteractor.PrizeEntity = .init(
+        let entity: PrizesListInteractor.Entity = .init(
             name: fetchedObject.name ?? "",
             price: fetchedObject.price,
             uuid: fetchedObject.uuid ?? UUID(),
@@ -70,7 +70,7 @@ extension PersistenceService: PersistenceStore {
         return entity
     }
     
-    func save(entity: PrizesListInteractor.PrizeEntity) {
+    func save(entity: PrizesListInteractor.Entity) {
         mainMOC.perform {
             let modelObject = Prize(context: self.mainMOC)
             modelObject.price = entity.price
@@ -95,8 +95,8 @@ extension PersistenceService: PersistenceStore {
         }
     }
     
-    func fetchSelectedObjects() -> [PrizesListInteractor.PrizeEntity] {
-        var result: [PrizesListInteractor.PrizeEntity] = []
+    func fetchSelectedObjects() -> [PrizesListInteractor.Entity] {
+        var result: [PrizesListInteractor.Entity] = []
         
         let predicate = NSPredicate(format: "isSelected == %@", NSNumber(value: true))
         performFetch(with: predicate)
@@ -106,7 +106,7 @@ extension PersistenceService: PersistenceStore {
         
         fetchedObjects?.forEach {
             
-            let entity: PrizesListInteractor.PrizeEntity = .init(
+            let entity: PrizesListInteractor.Entity = .init(
                 name: $0.name ?? "",
                 price: $0.price,
                 uuid: $0.uuid ?? UUID(),
@@ -118,7 +118,7 @@ extension PersistenceService: PersistenceStore {
         return result
     }
     
-    func updateRecord(entity: PrizesListInteractor.PrizeEntity) {
+    func updateRecord(entity: PrizesListInteractor.Entity) {
         let predicate = NSPredicate(format: "uuid == %@", entity.uuid as NSUUID)
         performFetch(with: predicate)
         
@@ -132,7 +132,7 @@ extension PersistenceService: PersistenceStore {
         saveMainMOC()
     }
     
-    func isRecordsAreEmpty() -> Bool {
+    func areRecordsEmpty() -> Bool {
         var isEmpty = true
         
         let fetchRequest: NSFetchRequest<Prize> = Prize.fetchRequest()
@@ -140,7 +140,7 @@ extension PersistenceService: PersistenceStore {
         mainMOC.performAndWait {
             do {
                 let fetchedObjects = try self.mainMOC.fetch(fetchRequest)
-                isEmpty = fetchedObjects.count == 0
+                isEmpty = fetchedObjects.isEmpty
             } catch {
                 print(error)
             }

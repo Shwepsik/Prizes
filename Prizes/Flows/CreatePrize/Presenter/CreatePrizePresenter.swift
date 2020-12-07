@@ -17,7 +17,6 @@ protocol CreatePrizePresenting: AnyObject {
 }
 
 protocol CreatePrizePresentingOutput: AnyObject {
-
     func presenter(_ presenter: CreatePrizePresenting, prize: CreatePrizeInteractor.Entity)
 }
 
@@ -58,17 +57,19 @@ extension CreatePrizePresenter: CreatePrizePresenting {
 
 extension CreatePrizePresenter: CreatePrizeInteractorOutput {
     
-    func didFailValidatePrice(error: String) {
+    func priceValidationResult(message: String) {
         view.doneBarButton(isEnabled: false)
-        view.updatePriceWaringLabel(warning: error)
+        view.updatePriceDescriptionLabel(text: message)
     }
     
-    func didFailValidateName(error: String) {
+    func nameValidationResult(message: String) {
         view.doneBarButton(isEnabled: false)
-        view.updateNameWarningLabel(warning: error)
+        view.updateNameDescriptionLabel(text: message)
     }
     
     func entityValid() {
         view.doneBarButton(isEnabled: true)
+        view.updateNameDescriptionLabel(text: "")
+        view.updatePriceDescriptionLabel(text: "")
     }
 }

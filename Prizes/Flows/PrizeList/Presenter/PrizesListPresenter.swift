@@ -17,6 +17,7 @@ protocol PrizesListPresenting: AnyObject {
     func plusButtonTapped()
     
     func viewDidLoad()
+    func viewWillAppear()
 }
 
 final class PrizesListPresenter {
@@ -61,6 +62,10 @@ extension PrizesListPresenter: PrizesListPresenting {
     func viewDidLoad() {
         interactor.saveDefaultPrizes()
     }
+    
+    func viewWillAppear() {
+        interactor.saveCreatedPrize()
+    }
 }
 
 // MARK: - PrizesListInteractorOutput
@@ -100,12 +105,12 @@ extension PrizesListPresenter: PersistenceServiceDelegate {
     }
 }
 
+// MARK: - CreatePrizePresentingOutput
+
 extension PrizesListPresenter: CreatePrizePresentingOutput {
     
     func presenter(_ presenter: CreatePrizePresenting, prize: CreatePrizeInteractor.Entity) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.interactor.save(entity: .init(name: prize.name, price: prize.price))
-        }
+        interactor.storeCreatedPrize(entity: .init(name: prize.name, price: prize.price))
     }
 }
 

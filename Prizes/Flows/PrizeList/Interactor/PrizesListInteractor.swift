@@ -10,12 +10,13 @@ import Foundation
 
 protocol PrizesListInteracting: AnyObject {
     func numberOfRows(in section: Int) -> Int
-    func item(at indexPath: IndexPath) -> PrizesListInteractor.PrizeEntity
+    func item(at indexPath: IndexPath) -> PrizesListInteractor.Entity
     func deleteRow(at indexPath: IndexPath)
     func didSelectRow(at indexPath: IndexPath)
     
-    func save(entity: PrizesListInteractor.PrizeEntity)
+    func storeCreatedPrize(entity: PrizesListInteractor.Entity)
         
+    func saveCreatedPrize()
     func saveDefaultPrizes()
 }
 
@@ -34,16 +35,17 @@ final class PrizesListInteractor {
     // MARK: - Private properties
     
     private var defaultPrizes = [
-        PrizeEntity(name: R.string.localized.tShirt(), price: 15),
-        PrizeEntity(name: R.string.localized.sneakers(), price: 30),
-        PrizeEntity(name: R.string.localized.headphones(), price: 35),
-        PrizeEntity(name: R.string.localized.shorts(), price: 10),
-        PrizeEntity(name: R.string.localized.cap(), price: 15),
-        PrizeEntity(name: R.string.localized.phone(), price: 100),
-        PrizeEntity(name: R.string.localized.car(), price: 1000),
-        PrizeEntity(name: R.string.localized.ball(), price: 25)
+        Entity(name: R.string.localized.tShirt(), price: 15),
+        Entity(name: R.string.localized.sneakers(), price: 30),
+        Entity(name: R.string.localized.headphones(), price: 35),
+        Entity(name: R.string.localized.shorts(), price: 10),
+        Entity(name: R.string.localized.cap(), price: 15),
+        Entity(name: R.string.localized.phone(), price: 100),
+        Entity(name: R.string.localized.car(), price: 1000),
+        Entity(name: R.string.localized.ball(), price: 25)
     ]
     private let maxAvailableAmount: Double = 100
+    private var createdPrize: [Entity] = []
     
     // MARK: - Init
     
@@ -61,7 +63,7 @@ extension PrizesListInteractor: PrizesListInteracting {
         return sectionData?.numberOfObjects ?? 0
     }
     
-    func item(at indexPath: IndexPath) -> PrizeEntity {
+    func item(at indexPath: IndexPath) -> Entity {
         let item = persistenceService.fetch(at: indexPath)
         return item
     }
@@ -103,13 +105,17 @@ extension PrizesListInteractor: PrizesListInteracting {
         output.updateAvailableAmount(amount: availableAmount())
     }
     
-    func save(entity: PrizeEntity) {
-        persistenceService.save(entity: entity)
+    func storeCreatedPrize(entity: Entity) {
+        createdPrize.append(.init(name: entity.name, price: entity.price))
+    }
+    
+    func saveCreatedPrize() {
+        createdPrize.forEach { persistenceService.save(entity: $0) }
+        createdPrize.removeAll()
     }
     
     func saveDefaultPrizes() {
-        
-        guard persistenceService.isRecordsAreEmpty() else {
+        guard persistenceService.areRecordsEmpty() else {
             output.updateAvailableAmount(amount: availableAmount())
             return
         }
@@ -118,6 +124,11 @@ extension PrizesListInteractor: PrizesListInteracting {
         defaultPrizes = defaultPrizes.sorted(by: { $0.price < $1.price })
         defaultPrizes.forEach { persistenceService.save(entity: $0) }
     }
+}
+
+// MARK: - Private
+
+private extension PrizesListInteractor {
     
     func availableAmount() -> Double {
         let prizes = persistenceService.fetchSelectedObjects()

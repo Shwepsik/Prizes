@@ -16,7 +16,7 @@ final class PrizeCell: UITableViewCell {
     @IBOutlet private var priceLabel: UILabel!
     @IBOutlet private var checkmarkImage: UIImageView!
     
-    // MARK: - Life cycle
+    // MARK: - Lifecycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -43,8 +43,10 @@ final class PrizeCell: UITableViewCell {
 private extension PrizeCell {
     
     func configureCell() {
-        nameLabel.textColor = .orange
-        priceLabel.textColor = .orange
+        nameLabel.font = AppFont.titleNormal
+        nameLabel.textColor = R.color.primaryOrange()
+        priceLabel.textColor = R.color.primaryOrange()
+        priceLabel.font = AppFont.titleNormal
         checkmarkImage.image = .checkmark
     }
 }

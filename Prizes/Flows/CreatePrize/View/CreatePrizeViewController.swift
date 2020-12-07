@@ -13,16 +13,16 @@ final class CreatePrizeViewController: UIViewController {
     // MARK: - Outlets
     
     @IBOutlet private var nameTextField: UITextField!
-    @IBOutlet private var nameWarningLabel: UILabel!
+    @IBOutlet private var nameDescriptionLabel: UILabel!
     
     @IBOutlet private var priceTextField: UITextField!
-    @IBOutlet private var priceWarningLabel: UILabel!
+    @IBOutlet private var priceDescriptionLabel: UILabel!
         
     // MARK: - Public properties
 
     var presenter: CreatePrizePresenting!
     
-    // MARK: - Private properties:
+    // MARK: - Private properties
 
     private var doneBarButton: UIBarButtonItem!
     private var cancelBarButton: UIBarButtonItem!
@@ -40,12 +40,14 @@ final class CreatePrizeViewController: UIViewController {
 
 extension CreatePrizeViewController: CreatePrizeView {
     
-    func updatePriceWaringLabel(warning: String) {
-        priceWarningLabel.text = warning
+    func updatePriceDescriptionLabel(text: String) {
+        priceDescriptionLabel.text = text
+        priceDescriptionLabel.textColor = R.color.primaryError() 
     }
     
-    func updateNameWarningLabel(warning: String) {
-        nameWarningLabel.text = warning
+    func updateNameDescriptionLabel(text: String) {
+        nameDescriptionLabel.text = text
+        nameDescriptionLabel.textColor = R.color.primaryError()
     }
     
     func doneBarButton(isEnabled: Bool) {
@@ -59,15 +61,15 @@ private extension CreatePrizeViewController {
     
     func configureView() {
         nameTextField.placeholder = R.string.localized.enterName()
-        nameWarningLabel.textColor = .black
-        priceWarningLabel.font = R.font.sfProDisplayRegular(size: 11)
-        nameWarningLabel.text = R.string.localized.requiredField()
+        nameDescriptionLabel.textColor = R.color.systemBackgroundColor()
+        nameDescriptionLabel.font = AppFont.titleSmall
+        nameDescriptionLabel.text = R.string.localized.requiredField()
         
         priceTextField.placeholder = R.string.localized.enterPrice()
         priceTextField.keyboardType = .numberPad
-        priceWarningLabel.textColor = .black
-        priceWarningLabel.font = R.font.sfProDisplayRegular(size: 11)
-        priceWarningLabel.text = R.string.localized.requiredField()
+        priceDescriptionLabel.textColor =  R.color.systemBackgroundColor()
+        priceDescriptionLabel.font = AppFont.titleSmall
+        priceDescriptionLabel.text = R.string.localized.requiredField()
         
         priceTextField.addTarget(self, action: #selector(textFieldDidUpdateValue(_:)), for: .editingChanged)
         nameTextField.addTarget(self, action: #selector(textFieldDidUpdateValue(_:)), for: .editingChanged)
@@ -85,6 +87,8 @@ private extension CreatePrizeViewController {
                                           target: self,
                                           action: #selector(cancelBarButtonTapped))
         navigationItem.leftBarButtonItem = cancelBarButton
+        
+        title = R.string.localized.createPrize()
     }
 
     @objc

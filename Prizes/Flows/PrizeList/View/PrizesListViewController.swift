@@ -18,6 +18,10 @@ final class PrizesListViewController: UIViewController {
     // MARK: - Public properties
 
     var presenter: PrizesListPresenting!
+    
+    // MARK: - Private properties
+    
+    private var plusBarButton: UIBarButtonItem!
 
     // MARK: - View lifecycle
 
@@ -25,6 +29,11 @@ final class PrizesListViewController: UIViewController {
         super.viewDidLoad()
         configureView()
         presenter.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.viewWillAppear()
     }
 }
 
@@ -103,12 +112,15 @@ private extension PrizesListViewController {
         tableView.register(R.nib.prizeCell)
         
         availableAmountLabel.textAlignment = .center
-        availableAmountLabel.font = R.font.sfProDisplayRegular(size: 22)
-        availableAmountLabel.textColor = .orange
+        availableAmountLabel.font = AppFont.titleLarge
+        availableAmountLabel.textColor = R.color.primaryOrange()
         
-        let rbb = UIBarButtonItem(image: .add, style: .done, target: self, action: #selector(plusButtonTapped))
-        navigationItem.rightBarButtonItem = rbb
-        title = R.string.localized.prizesListNavTitle()
+        plusBarButton = UIBarButtonItem(image: .add,
+                                        style: .done,
+                                        target: self,
+                                        action: #selector(plusButtonTapped))
+        navigationItem.rightBarButtonItem = plusBarButton
+        title = R.string.localized.prizes()
     }
     
     @objc
