@@ -9,8 +9,8 @@
 import Foundation
 
 protocol CreatePrizeInteracting: AnyObject {
-    func updatePrice(price: Double)
-    func updateName(name: String)
+    func updatePrice(price: Double?)
+    func updateName(name: String?)
     func validateEntity()
 }
 
@@ -32,7 +32,12 @@ final class CreatePrizeInteractor {
 
 extension CreatePrizeInteractor: CreatePrizeInteracting {
     
-    func updatePrice(price: Double) {
+    func updatePrice(price: Double?) {
+        guard let price = price else {
+            output.didFailValidatePrice()
+            return
+        }
+        
         guard price != 0 else {
             output.didFailValidatePrice()
             return
@@ -41,7 +46,12 @@ extension CreatePrizeInteractor: CreatePrizeInteracting {
         prizeEntity = CreatePrizeInteractor.Entity(price: price, name: prizeEntity.name)
     }
     
-    func updateName(name: String) {
+    func updateName(name: String?) {
+        guard let name = name else {
+            output.didFailValidateName()
+            return
+        }
+        
         guard !name.isEmpty else {
             output.didFailValidateName()
             return

@@ -9,29 +9,29 @@
 import UIKit
 
 protocol CreatePrizePresenting: AnyObject {
-
-    func presentSomething()
+    func priceTextFieldDidUpdateValue(price: Double?)
+    func nameTextFieldDidUpdateValue(name: String?)
 }
 
-
-    final class CreatePrizePresenter {
-
-        // MARK: - Public properties
-
-        weak var view: CreatePrizeView!
-        var router: CreatePrizeRouting!
-        var interactor: CreatePrizeInteracting!
-    }
+final class CreatePrizePresenter {
+    
+    // MARK: - Public properties
+    
+    weak var view: CreatePrizeView!
+    var router: CreatePrizeRouting!
+    var interactor: CreatePrizeInteracting!
+}
 
 // MARK: - Presentation logic
 
 extension CreatePrizePresenter: CreatePrizePresenting {
-
-    func presentSomething() {
-
-        // TODO: Present something in view or call some method on interactor
-
-        // router.navigateToSomewhere()
+    
+    func priceTextFieldDidUpdateValue(price: Double?) {
+        interactor.updatePrice(price: price)
+    }
+    
+    func nameTextFieldDidUpdateValue(name: String?) {
+        interactor.updateName(name: name)
     }
 }
 

@@ -18,9 +18,6 @@ final class CreatePrizeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // TODO: Ask the Presenter to do some work
-        presenter.presentSomething()
     }
 }
 
