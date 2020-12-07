@@ -10,7 +10,7 @@ import UIKit
 
 struct CreatePrizeCoordinator {
     
-    func configureFlow() -> CreatePrizeViewController {
+    func configureFlow(delegate: CreatePrizePresentingOutput) -> CreatePrizeViewController {
         
         let router = CreatePrizeRouter()
         let viewController = router.initialViewController()
@@ -19,6 +19,7 @@ struct CreatePrizeCoordinator {
         let presenter = CreatePrizePresenter()
         presenter.view = viewController
         presenter.router = router
+        presenter.output = delegate
         
         let interactor = CreatePrizeInteractor()
         interactor.output = presenter

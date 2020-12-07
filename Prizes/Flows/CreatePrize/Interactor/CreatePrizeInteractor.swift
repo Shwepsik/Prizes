@@ -12,6 +12,8 @@ protocol CreatePrizeInteracting: AnyObject {
     func updatePrice(price: String?)
     func updateName(name: String?)
     func validateEntity()
+    
+    var prizeEntity: CreatePrizeInteractor.Entity { get }
 }
 
 protocol CreatePrizeInteractorOutput: AnyObject {

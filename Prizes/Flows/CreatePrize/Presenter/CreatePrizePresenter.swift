@@ -16,6 +16,11 @@ protocol CreatePrizePresenting: AnyObject {
     func cancelBarButtonTapped()
 }
 
+protocol CreatePrizePresentingOutput: AnyObject {
+
+    func presenter(_ presenter: CreatePrizePresenting, prize: CreatePrizeInteractor.Entity)
+}
+
 final class CreatePrizePresenter {
     
     // MARK: - Public properties
@@ -23,6 +28,8 @@ final class CreatePrizePresenter {
     weak var view: CreatePrizeView!
     var router: CreatePrizeRouting!
     var interactor: CreatePrizeInteracting!
+    
+    weak var output: CreatePrizePresentingOutput?
 }
 
 // MARK: - Presentation logic
@@ -38,6 +45,7 @@ extension CreatePrizePresenter: CreatePrizePresenting {
     }
     
     func doneBarButtonTapped() {
+        output?.presenter(self, prize: interactor.prizeEntity)
         router.closeViewController()
     }
     

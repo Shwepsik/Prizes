@@ -13,6 +13,8 @@ protocol PrizesListInteracting: AnyObject {
     func item(at indexPath: IndexPath) -> PrizesListInteractor.PrizeEntity
     func deleteRow(at indexPath: IndexPath)
     func didSelectRow(at indexPath: IndexPath)
+    
+    func save(entity: PrizesListInteractor.PrizeEntity)
         
     func saveDefaultPrizes()
 }
@@ -66,12 +68,13 @@ extension PrizesListInteractor: PrizesListInteracting {
     
     func deleteRow(at indexPath: IndexPath) {
         persistenceService.delete(at: indexPath)
+        output.updateAvailableAmount(amount: availableAmount())
     }
     
     func didSelectRow(at indexPath: IndexPath) {
         let entity = item(at: indexPath)
         
-        guard entity.price < maxAvailableAmount else {
+        guard entity.price <= maxAvailableAmount else {
             output.expensivePrizeSelected()
             return
         }
@@ -98,6 +101,10 @@ extension PrizesListInteractor: PrizesListInteracting {
         }
         
         output.updateAvailableAmount(amount: availableAmount())
+    }
+    
+    func save(entity: PrizeEntity) {
+        persistenceService.save(entity: entity)
     }
     
     func saveDefaultPrizes() {

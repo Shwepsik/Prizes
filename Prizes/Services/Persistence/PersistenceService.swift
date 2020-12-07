@@ -85,7 +85,7 @@ extension PersistenceService: PersistenceStore {
     func delete(at indexPath: IndexPath) {
         let fetchedObject = fetchedResultsController.object(at: indexPath)
         
-        mainMOC.perform {
+        mainMOC.performAndWait {
             do {
                 self.mainMOC.delete(fetchedObject)
                 try self.mainMOC.save()

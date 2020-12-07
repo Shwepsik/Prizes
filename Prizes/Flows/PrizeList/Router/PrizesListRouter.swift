@@ -14,7 +14,7 @@ protocol PrizesListRouting {
     func presentAlertController(with viewModel: UIViewController.AlertViewModel?,
                                 style: UIAlertController.Style,
                                 actions: [UIAlertAction])
-    func navigateToCreatePrizeScreen()
+    func navigateToCreatePrizeScreen(delegate: CreatePrizePresentingOutput)
 }
 
 final class PrizesListRouter {
@@ -41,8 +41,8 @@ extension PrizesListRouter: PrizesListRouting {
                                            actions: actions)
     }
     
-    func navigateToCreatePrizeScreen() {
-        let controller = CreatePrizeCoordinator().configureFlow()
+    func navigateToCreatePrizeScreen(delegate: CreatePrizePresentingOutput) {
+        let controller = CreatePrizeCoordinator().configureFlow(delegate: delegate)
         let navController = UINavigationController(rootViewController: controller)
         navController.modalPresentationStyle = .fullScreen
         viewController.present(navController, animated: true)

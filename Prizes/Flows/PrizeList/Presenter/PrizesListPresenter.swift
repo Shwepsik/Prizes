@@ -55,7 +55,7 @@ extension PrizesListPresenter: PrizesListPresenting {
     }
     
     func plusButtonTapped() {
-        router.navigateToCreatePrizeScreen()
+        router.navigateToCreatePrizeScreen(delegate: self)
     }
     
     func viewDidLoad() {
@@ -96,6 +96,15 @@ extension PrizesListPresenter: PersistenceServiceDelegate {
             view.deleteRow(at: indexPath)
         case .update(let indexPath):
             view.updateRow(at: indexPath)
+        }
+    }
+}
+
+extension PrizesListPresenter: CreatePrizePresentingOutput {
+    
+    func presenter(_ presenter: CreatePrizePresenting, prize: CreatePrizeInteractor.Entity) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.interactor.save(entity: .init(name: prize.name, price: prize.price))
         }
     }
 }
