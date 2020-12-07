@@ -26,6 +26,7 @@ final class CreatePrizeViewController: UIViewController {
 
     private var doneBarButton: UIBarButtonItem!
     private var cancelBarButton: UIBarButtonItem!
+    private let toolBar = UIToolbar()
 
     // MARK: - View lifecycle
 
@@ -33,6 +34,7 @@ final class CreatePrizeViewController: UIViewController {
         super.viewDidLoad()
         configureView()
         configureNavigationBar()
+        configureToolBar()
     }
 }
 
@@ -72,7 +74,10 @@ private extension CreatePrizeViewController {
         priceDescriptionLabel.text = R.string.localized.requiredField()
         
         priceTextField.addTarget(self, action: #selector(textFieldDidUpdateValue(_:)), for: .editingChanged)
+        priceTextField.inputAccessoryView = toolBar
+        
         nameTextField.addTarget(self, action: #selector(textFieldDidUpdateValue(_:)), for: .editingChanged)
+        nameTextField.inputAccessoryView = toolBar
     }
     
     func configureNavigationBar() {
@@ -110,5 +115,23 @@ private extension CreatePrizeViewController {
         } else if textField == nameTextField {
             presenter.nameTextFieldDidUpdateValue(name: textField.text)
         }
+    }
+    
+    func configureToolBar() {
+        toolBar.sizeToFit()
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace,
+                                            target: nil,
+                                            action: nil)
+        
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done,
+                                         target: self,
+                                         action: #selector(toolBarDoneAction))
+        
+        toolBar.setItems([flexibleSpace, doneButton], animated: false)
+    }
+    
+    @objc
+    func toolBarDoneAction() {
+        view.endEditing(true)
     }
 }

@@ -94,7 +94,9 @@ extension PrizesListViewController: PrizesListView {
     }
     
     func updateRow(at indexPath: IndexPath) {
-        tableView.reloadRows(at: [indexPath], with: .none)
+        let cell = tableView.cellForRow(at: indexPath) as? PrizeCell
+        let viewModel = presenter.item(at: indexPath)
+        cell?.render(viewModel: viewModel)
     }
     
     func render(viewModel: ViewModel) {
