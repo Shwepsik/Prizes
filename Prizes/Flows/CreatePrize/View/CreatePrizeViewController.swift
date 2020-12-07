@@ -9,26 +9,102 @@
 import UIKit
 
 final class CreatePrizeViewController: UIViewController {
-
+    
+    // MARK: - Outlets
+    
+    @IBOutlet private var nameTextField: UITextField!
+    @IBOutlet private var nameWarningLabel: UILabel!
+    
+    @IBOutlet private var priceTextField: UITextField!
+    @IBOutlet private var priceWarningLabel: UILabel!
+        
     // MARK: - Public properties
 
     var presenter: CreatePrizePresenting!
+    
+    // MARK: - Private properties:
+
+    private var doneBarButton: UIBarButtonItem!
+    private var cancelBarButton: UIBarButtonItem!
 
     // MARK: - View lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureView()
+        configureNavigationBar()
     }
 }
 
 // MARK: - View logic
 
 extension CreatePrizeViewController: CreatePrizeView {
+    
+    func updatePriceWaringLabel(warning: String) {
+        priceWarningLabel.text = warning
+    }
+    
+    func updateNameWarningLabel(warning: String) {
+        nameWarningLabel.text = warning
+    }
+    
+    func doneBarButton(isEnabled: Bool) {
+        doneBarButton.isEnabled = isEnabled
+    }
+}
 
-    func displaySomething(viewModel: ViewModel) {
+// MARK: - Private
 
-        // TODO: Display the result from the Presenter
+private extension CreatePrizeViewController {
+    
+    func configureView() {
+        nameTextField.placeholder = R.string.localized.enterName()
+        nameWarningLabel.textColor = .black
+        priceWarningLabel.font = R.font.sfProDisplayRegular(size: 11)
+        nameWarningLabel.text = R.string.localized.requiredField()
+        
+        priceTextField.placeholder = R.string.localized.enterPrice()
+        priceTextField.keyboardType = .numberPad
+        priceWarningLabel.textColor = .black
+        priceWarningLabel.font = R.font.sfProDisplayRegular(size: 11)
+        priceWarningLabel.text = R.string.localized.requiredField()
+        
+        priceTextField.addTarget(self, action: #selector(textFieldDidUpdateValue(_:)), for: .editingChanged)
+        nameTextField.addTarget(self, action: #selector(textFieldDidUpdateValue(_:)), for: .editingChanged)
+    }
+    
+    func configureNavigationBar() {
+        doneBarButton = UIBarButtonItem(barButtonSystemItem: .done,
+                                        target: self,
+                                        action: #selector(doneBarButtonTapped))
 
-        // nameTextField.text = viewModel.name
+        navigationItem.rightBarButtonItem = doneBarButton
+        doneBarButton.isEnabled = false
+        
+        cancelBarButton = UIBarButtonItem(barButtonSystemItem: .cancel,
+                                          target: self,
+                                          action: #selector(cancelBarButtonTapped))
+        navigationItem.leftBarButtonItem = cancelBarButton
+    }
+
+    @objc
+    func doneBarButtonTapped() {
+        view.endEditing(true)
+        presenter.doneBarButtonTapped()
+    }
+    
+    @objc
+    func cancelBarButtonTapped() {
+        view.endEditing(true)
+        presenter.cancelBarButtonTapped()
+    }
+    
+    @objc
+    func textFieldDidUpdateValue(_ textField: UITextField) {
+        if textField == priceTextField {
+            presenter.priceTextFieldDidUpdateValue(price: textField.text)
+        } else if textField == nameTextField {
+            presenter.nameTextFieldDidUpdateValue(name: textField.text)
+        }
     }
 }

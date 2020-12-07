@@ -9,8 +9,11 @@
 import UIKit
 
 protocol CreatePrizePresenting: AnyObject {
-    func priceTextFieldDidUpdateValue(price: Double?)
+    func priceTextFieldDidUpdateValue(price: String?)
     func nameTextFieldDidUpdateValue(name: String?)
+    
+    func doneBarButtonTapped()
+    func cancelBarButtonTapped()
 }
 
 final class CreatePrizePresenter {
@@ -26,12 +29,20 @@ final class CreatePrizePresenter {
 
 extension CreatePrizePresenter: CreatePrizePresenting {
     
-    func priceTextFieldDidUpdateValue(price: Double?) {
+    func priceTextFieldDidUpdateValue(price: String?) {
         interactor.updatePrice(price: price)
     }
     
     func nameTextFieldDidUpdateValue(name: String?) {
         interactor.updateName(name: name)
+    }
+    
+    func doneBarButtonTapped() {
+        router.closeViewController()
+    }
+    
+    func cancelBarButtonTapped() {
+        router.closeViewController()
     }
 }
 
@@ -39,9 +50,17 @@ extension CreatePrizePresenter: CreatePrizePresenting {
 
 extension CreatePrizePresenter: CreatePrizeInteractorOutput {
     
-    func didFailValidatePrice() {
+    func didFailValidatePrice(error: String) {
+        view.doneBarButton(isEnabled: false)
+        view.updatePriceWaringLabel(warning: error)
     }
     
-    func didFailValidateName() {
+    func didFailValidateName(error: String) {
+        view.doneBarButton(isEnabled: false)
+        view.updateNameWarningLabel(warning: error)
+    }
+    
+    func entityValid() {
+        view.doneBarButton(isEnabled: true)
     }
 }

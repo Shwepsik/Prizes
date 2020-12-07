@@ -9,14 +9,15 @@
 import Foundation
 
 protocol CreatePrizeInteracting: AnyObject {
-    func updatePrice(price: Double?)
+    func updatePrice(price: String?)
     func updateName(name: String?)
     func validateEntity()
 }
 
 protocol CreatePrizeInteractorOutput: AnyObject {
-    func didFailValidatePrice()
-    func didFailValidateName()
+    func didFailValidatePrice(error: String)
+    func didFailValidateName(error: String)
+    func entityValid()
 }
 
 final class CreatePrizeInteractor {
@@ -32,42 +33,39 @@ final class CreatePrizeInteractor {
 
 extension CreatePrizeInteractor: CreatePrizeInteracting {
     
-    func updatePrice(price: Double?) {
-        guard let price = price else {
-            output.didFailValidatePrice()
+    func updatePrice(price: String?) {
+        guard let price = Double(price ?? "") else {
+            output.didFailValidatePrice(error: "fail")
             return
         }
         
         guard price != 0 else {
-            output.didFailValidatePrice()
+            output.didFailValidatePrice(error: "fail")
             return
         }
         
         prizeEntity = CreatePrizeInteractor.Entity(price: price, name: prizeEntity.name)
+        validateEntity()
     }
     
     func updateName(name: String?) {
         guard let name = name else {
-            output.didFailValidateName()
+            output.didFailValidateName(error: "fail")
             return
         }
         
         guard !name.isEmpty else {
-            output.didFailValidateName()
-            return
-        }
-        prizeEntity = .init(price: prizeEntity.price, name: name)
-    }
-    
-    func validateEntity() {
-        guard !prizeEntity.name.isEmpty else {
-            output.didFailValidateName()
+            output.didFailValidateName(error: "fail")
             return
         }
         
-        guard prizeEntity.price != 0 else {
-            output.didFailValidatePrice()
-            return
-        }
+        prizeEntity = .init(price: prizeEntity.price, name: name)
+        validateEntity()
+    }
+    
+    func validateEntity() {
+        guard !prizeEntity.name.isEmpty else { return }
+        guard prizeEntity.price != 0 else { return }
+        output.entityValid()
     }
 }

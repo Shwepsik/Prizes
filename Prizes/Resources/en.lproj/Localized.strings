@@ -26,3 +26,7 @@
 
 "availableAmount" = "Available amount: - %@";
 "prizesListNavTitle" = "Prizes";
+"done" = "Done";
+"requiredField" = "Required field";
+"enterName" = "Enter name";
+"enterPrice" = "Enter price";

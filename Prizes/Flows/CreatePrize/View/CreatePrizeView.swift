@@ -10,13 +10,7 @@ import UIKit
 
 protocol CreatePrizeView: AnyObject {
 
-    func displaySomething(viewModel: CreatePrizeViewController.ViewModel)
-}
-
-extension CreatePrizeViewController {
-    
-    struct ViewModel {
-        
-        // TODO: Create view model
-    }
+    func updatePriceWaringLabel(warning: String)
+    func updateNameWarningLabel(warning: String)
+    func doneBarButton(isEnabled: Bool)
 }
