@@ -17,7 +17,7 @@ protocol CreatePrizePresenting: AnyObject {
 }
 
 protocol CreatePrizePresentingOutput: AnyObject {
-    func presenter(_ presenter: CreatePrizePresenting, prize: CreatePrizeInteractor.Entity)
+    func presenter(_ presenter: CreatePrizePresenting, entity: CreatePrizeInteractor.Entity)
 }
 
 final class CreatePrizePresenter {
@@ -44,7 +44,7 @@ extension CreatePrizePresenter: CreatePrizePresenting {
     }
     
     func doneBarButtonTapped() {
-        output?.presenter(self, prize: interactor.prizeEntity)
+        output?.presenter(self, entity: interactor.prizeEntity)
         router.closeViewController()
     }
     

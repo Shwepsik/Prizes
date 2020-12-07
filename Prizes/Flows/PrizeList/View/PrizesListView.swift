@@ -15,12 +15,5 @@ protocol PrizesListView: AnyObject {
     func deleteRow(at indexPath: IndexPath)
     func updateRow(at indexPath: IndexPath)
     
-    func render(viewModel: PrizesListViewController.ViewModel)
-}
-
-extension PrizesListViewController {
-    
-    struct ViewModel {
-        let availableAmount: String
-    }
+    func render(availableAmount: String)
 }

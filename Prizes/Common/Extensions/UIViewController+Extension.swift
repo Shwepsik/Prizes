@@ -18,11 +18,8 @@ extension UIViewController {
                                                 message: viewModel?.message,
                                                 preferredStyle: style)
         
-        actions.forEach { action in
-            alertController.addAction(action)
-        }
-        
-        self.present(alertController, animated: true)
+        actions.forEach { alertController.addAction($0) }
+        present(alertController, animated: true)
     }
 }
 

@@ -44,7 +44,6 @@ extension PrizesListRouter: PrizesListRouting {
     func navigateToCreatePrizeScreen(delegate: CreatePrizePresentingOutput) {
         let controller = CreatePrizeCoordinator().configureFlow(delegate: delegate)
         let navController = UINavigationController(rootViewController: controller)
-        navController.modalPresentationStyle = .fullScreen
         viewController.present(navController, animated: true)
     }
 }

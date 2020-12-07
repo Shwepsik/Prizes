@@ -26,15 +26,15 @@ final class CreatePrizeViewController: UIViewController {
 
     private var doneBarButton: UIBarButtonItem!
     private var cancelBarButton: UIBarButtonItem!
-    private let toolBar = UIToolbar()
+    private var toolBar: UIToolbar!
 
     // MARK: - View lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureToolBar()
         configureView()
         configureNavigationBar()
-        configureToolBar()
     }
 }
 
@@ -57,9 +57,40 @@ extension CreatePrizeViewController: CreatePrizeView {
     }
 }
 
+// MARK: - Actions
+
+private extension CreatePrizeViewController {
+    
+    @objc
+    func doneBarButtonAction() {
+        view.endEditing(true)
+        presenter.doneBarButtonTapped()
+    }
+    
+    @objc
+    func cancelBarButtonAction() {
+        view.endEditing(true)
+        presenter.cancelBarButtonTapped()
+    }
+    
+    @objc
+    func toolBarDoneAction() {
+        view.endEditing(true)
+    }
+}
+
 // MARK: - Private
 
 private extension CreatePrizeViewController {
+    
+    @objc
+    func textFieldDidUpdateValue(_ textField: UITextField) {
+        if textField == priceTextField {
+            presenter.priceTextFieldDidUpdateValue(price: textField.text)
+        } else if textField == nameTextField {
+            presenter.nameTextFieldDidUpdateValue(name: textField.text)
+        }
+    }
     
     func configureView() {
         nameTextField.placeholder = R.string.localized.enterName()
@@ -68,7 +99,7 @@ private extension CreatePrizeViewController {
         nameDescriptionLabel.text = R.string.localized.requiredField()
         
         priceTextField.placeholder = R.string.localized.enterPrice()
-        priceTextField.keyboardType = .numberPad
+        priceTextField.keyboardType = .decimalPad
         priceDescriptionLabel.textColor =  R.color.systemBackgroundColor()
         priceDescriptionLabel.font = AppFont.titleSmall
         priceDescriptionLabel.text = R.string.localized.requiredField()
@@ -83,42 +114,24 @@ private extension CreatePrizeViewController {
     func configureNavigationBar() {
         doneBarButton = UIBarButtonItem(barButtonSystemItem: .done,
                                         target: self,
-                                        action: #selector(doneBarButtonTapped))
+                                        action: #selector(doneBarButtonAction))
 
         navigationItem.rightBarButtonItem = doneBarButton
         doneBarButton.isEnabled = false
         
         cancelBarButton = UIBarButtonItem(barButtonSystemItem: .cancel,
                                           target: self,
-                                          action: #selector(cancelBarButtonTapped))
+                                          action: #selector(cancelBarButtonAction))
         navigationItem.leftBarButtonItem = cancelBarButton
         
         title = R.string.localized.createPrize()
     }
 
-    @objc
-    func doneBarButtonTapped() {
-        view.endEditing(true)
-        presenter.doneBarButtonTapped()
-    }
-    
-    @objc
-    func cancelBarButtonTapped() {
-        view.endEditing(true)
-        presenter.cancelBarButtonTapped()
-    }
-    
-    @objc
-    func textFieldDidUpdateValue(_ textField: UITextField) {
-        if textField == priceTextField {
-            presenter.priceTextFieldDidUpdateValue(price: textField.text)
-        } else if textField == nameTextField {
-            presenter.nameTextFieldDidUpdateValue(name: textField.text)
-        }
-    }
-    
     func configureToolBar() {
-        toolBar.sizeToFit()
+        toolBar = UIToolbar(
+            frame: .init(origin: .zero, size: .init(width: UIScreen.main.bounds.width, height: 44))
+        )
+
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace,
                                             target: nil,
                                             action: nil)
@@ -128,10 +141,5 @@ private extension CreatePrizeViewController {
                                          action: #selector(toolBarDoneAction))
         
         toolBar.setItems([flexibleSpace, doneButton], animated: false)
-    }
-    
-    @objc
-    func toolBarDoneAction() {
-        view.endEditing(true)
     }
 }

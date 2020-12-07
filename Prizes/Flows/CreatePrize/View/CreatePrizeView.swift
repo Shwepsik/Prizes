@@ -9,7 +9,6 @@
 import UIKit
 
 protocol CreatePrizeView: AnyObject {
-
     func updatePriceDescriptionLabel(text: String)
     func updateNameDescriptionLabel(text: String)
     func doneBarButton(isEnabled: Bool)

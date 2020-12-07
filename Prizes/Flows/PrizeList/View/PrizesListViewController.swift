@@ -30,11 +30,6 @@ final class PrizesListViewController: UIViewController {
         configureView()
         presenter.viewDidLoad()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        presenter.viewWillAppear()
-    }
 }
 
 // MARK: - UITableViewDataSource
@@ -86,11 +81,11 @@ extension PrizesListViewController: PrizesListView {
     }
     
     func insertRow(at indexPath: IndexPath) {
-        tableView.insertRows(at: [indexPath], with: .left)
+        tableView.insertRows(at: [indexPath], with: .fade)
     }
     
     func deleteRow(at indexPath: IndexPath) {
-        tableView.deleteRows(at: [indexPath], with: .left)
+        tableView.deleteRows(at: [indexPath], with: .fade)
     }
     
     func updateRow(at indexPath: IndexPath) {
@@ -99,8 +94,18 @@ extension PrizesListViewController: PrizesListView {
         cell?.render(viewModel: viewModel)
     }
     
-    func render(viewModel: ViewModel) {
-        availableAmountLabel.text = R.string.localized.availableAmount(viewModel.availableAmount)
+    func render(availableAmount: String) {
+        availableAmountLabel.text = R.string.localized.availableAmount(availableAmount)
+    }
+}
+
+// MARK: - Actions
+
+private extension PrizesListViewController {
+    
+    @objc
+    func plusButtonAction() {
+        presenter.plusButtonTapped()
     }
 }
 
@@ -112,6 +117,7 @@ private extension PrizesListViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(R.nib.prizeCell)
+        tableView.tableFooterView = UIView()
         
         availableAmountLabel.textAlignment = .center
         availableAmountLabel.font = AppFont.titleLarge
@@ -120,13 +126,8 @@ private extension PrizesListViewController {
         plusBarButton = UIBarButtonItem(image: .add,
                                         style: .done,
                                         target: self,
-                                        action: #selector(plusButtonTapped))
+                                        action: #selector(plusButtonAction))
         navigationItem.rightBarButtonItem = plusBarButton
         title = R.string.localized.prizes()
-    }
-    
-    @objc
-    func plusButtonTapped() {
-        presenter.plusButtonTapped()
     }
 }

@@ -14,9 +14,8 @@ protocol PrizesListInteracting: AnyObject {
     func deleteRow(at indexPath: IndexPath)
     func didSelectRow(at indexPath: IndexPath)
     
-    func storeCreatedPrize(entity: PrizesListInteractor.Entity)
+    func save(entity: PrizesListInteractor.Entity)
         
-    func saveCreatedPrize()
     func saveDefaultPrizes()
 }
 
@@ -45,7 +44,6 @@ final class PrizesListInteractor {
         Entity(name: R.string.localized.ball(), price: 25)
     ]
     private let maxAvailableAmount: Double = 100
-    private var createdPrize: [Entity] = []
     
     // MARK: - Init
     
@@ -57,7 +55,7 @@ final class PrizesListInteractor {
 // MARK: - Business logic
 
 extension PrizesListInteractor: PrizesListInteracting {
-    
+
     func numberOfRows(in section: Int) -> Int {
         let sectionData = persistenceService.fetchedResultsController.sections?[section]
         return sectionData?.numberOfObjects ?? 0
@@ -105,13 +103,8 @@ extension PrizesListInteractor: PrizesListInteracting {
         output.updateAvailableAmount(amount: availableAmount())
     }
     
-    func storeCreatedPrize(entity: Entity) {
-        createdPrize.append(.init(name: entity.name, price: entity.price))
-    }
-    
-    func saveCreatedPrize() {
-        createdPrize.forEach { persistenceService.save(entity: $0) }
-        createdPrize.removeAll()
+    func save(entity: Entity) {
+        persistenceService.save(entity: entity)
     }
     
     func saveDefaultPrizes() {

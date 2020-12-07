@@ -6,10 +6,7 @@
 //  Copyright © 2020 Valerii. All rights reserved.
 //
 
-import Foundation
-
 enum AppFont {
-    
     static let titleNormal = R.font.sfProDisplayRegular(size: 17)
     static let titleSmall = R.font.sfProDisplayRegular(size: 11)
     static let titleLarge = R.font.sfProDisplayRegular(size: 22)
