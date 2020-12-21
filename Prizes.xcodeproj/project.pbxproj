@@ -22,6 +22,7 @@
 		38138F20257C2F1A0025F540 /* PrizesListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38138F17257C2F1A0025F540 /* PrizesListRouter.swift */; };
 		38138F21257C2F1A0025F540 /* PrizesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38138F19257C2F1A0025F540 /* PrizesListView.swift */; };
 		38138F22257C2F1A0025F540 /* PrizesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38138F1A257C2F1A0025F540 /* PrizesListViewController.swift */; };
+		38269B1225901C9C009F103B /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38269B1125901C9C009F103B /* UIAlertController+Extension.swift */; };
 		3878C824257E3D9D00F2497E /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3878C823257E3D9D00F2497E /* AppFont.swift */; };
 		3878C835257E548500F2497E /* Prize+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3878C833257E548500F2497E /* Prize+CoreDataProperties.swift */; };
 		3878C836257E548500F2497E /* Prize+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3878C834257E548500F2497E /* Prize+CoreDataClass.swift */; };
@@ -60,6 +61,7 @@
 		38138F17257C2F1A0025F540 /* PrizesListRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrizesListRouter.swift; sourceTree = "<group>"; };
 		38138F19257C2F1A0025F540 /* PrizesListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrizesListView.swift; sourceTree = "<group>"; };
 		38138F1A257C2F1A0025F540 /* PrizesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrizesListViewController.swift; sourceTree = "<group>"; };
+		38269B1125901C9C009F103B /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
 		3878C823257E3D9D00F2497E /* AppFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFont.swift; sourceTree = "<group>"; };
 		3878C833257E548500F2497E /* Prize+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Prize+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3878C834257E548500F2497E /* Prize+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Prize+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				38BA5643257D93B6007B7D57 /* UIViewController+Extension.swift */,
+				38269B1125901C9C009F103B /* UIAlertController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -518,6 +521,7 @@
 				38138F22257C2F1A0025F540 /* PrizesListViewController.swift in Sources */,
 				3878C836257E548500F2497E /* Prize+CoreDataClass.swift in Sources */,
 				38BE8944257DA756003A427E /* CreatePrizeEntity.swift in Sources */,
+				38269B1225901C9C009F103B /* UIAlertController+Extension.swift in Sources */,
 				38BE8940257DA756003A427E /* CreatePrizePresenter.swift in Sources */,
 				3878C835257E548500F2497E /* Prize+CoreDataProperties.swift in Sources */,
 				38138F1D257C2F1A0025F540 /* PrizesListEntity.swift in Sources */,

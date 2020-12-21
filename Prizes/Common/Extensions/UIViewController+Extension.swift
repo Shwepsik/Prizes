@@ -10,30 +10,13 @@ import UIKit
 
 extension UIViewController {
     
-    func showAlertController(with viewModel: UIViewController.AlertViewModel? = nil,
-                             style: UIAlertController.Style,
-                             actions: [UIAlertAction]) {
+    func showAlertController(with viewModel: UIAlertController.ViewModel) {
         
-        let alertController = UIAlertController(title: viewModel?.title,
-                                                message: viewModel?.message,
-                                                preferredStyle: style)
+        let alertController = UIAlertController(title: viewModel.title,
+                                                message: viewModel.message,
+                                                preferredStyle: viewModel.style)
         
-        actions.forEach { alertController.addAction($0) }
+        viewModel.actions.forEach { alertController.addAction($0) }
         present(alertController, animated: true)
-    }
-}
-
-// MARK: - ViewModel
-
-extension UIViewController {
-    
-    struct AlertViewModel {
-        let title: String?
-        let message: String
-        
-        init(title: String? = nil, message: String) {
-            self.title = title
-            self.message = message
-        }
     }
 }

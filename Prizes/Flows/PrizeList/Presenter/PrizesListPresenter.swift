@@ -114,12 +114,11 @@ extension PrizesListPresenter: CreatePrizePresentingOutput {
 private extension PrizesListPresenter {
     
     func presentOverchargesAlert() {
-        let okAction = UIAlertAction(title: R.string.localized.ok(), style: .default) { _ in }
+        let okAction = UIAlertAction(title: R.string.localized.ok(), style: .default)
         
         router.presentAlertController(with: .init(
-            message: R.string.localized.overchargesDescription()),
-            style: .alert,
-            actions: [okAction]
+                                        message: R.string.localized.overchargesDescription(),
+                                        actions: [okAction])
         )
     }
 }

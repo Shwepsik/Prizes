@@ -11,9 +11,7 @@ import UIKit
 protocol PrizesListRouting {
 
     func initialViewController() -> PrizesListViewController
-    func presentAlertController(with viewModel: UIViewController.AlertViewModel?,
-                                style: UIAlertController.Style,
-                                actions: [UIAlertAction])
+    func presentAlertController(with viewModel: UIAlertController.ViewModel)
     func navigateToCreatePrizeScreen(delegate: CreatePrizePresentingOutput)
 }
 
@@ -33,17 +31,14 @@ extension PrizesListRouter: PrizesListRouting {
         return controller
     }
     
-    func presentAlertController(with viewModel: UIViewController.AlertViewModel?,
-                                style: UIAlertController.Style,
-                                actions: [UIAlertAction]) {
-        viewController.showAlertController(with: viewModel,
-                                           style: style,
-                                           actions: actions)
+    func presentAlertController(with viewModel: UIAlertController.ViewModel) {
+        viewController.showAlertController(with: viewModel)
     }
     
     func navigateToCreatePrizeScreen(delegate: CreatePrizePresentingOutput) {
         let controller = CreatePrizeCoordinator().configureFlow(delegate: delegate)
         let navController = UINavigationController(rootViewController: controller)
+        navController.modalPresentationStyle = .overCurrentContext
         viewController.present(navController, animated: true)
     }
 }

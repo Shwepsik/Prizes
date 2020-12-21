@@ -14,7 +14,7 @@ extension PrizesListInteractor {
         let name: String
         let price: Double
         let uuid: UUID
-        let isSelected: Bool
+        var isSelected: Bool
         let date: Date
         
         init(name: String, price: Double, uuid: UUID = UUID(), isSelected: Bool = false, date: Date = Date()) {

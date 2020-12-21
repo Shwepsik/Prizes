@@ -79,10 +79,11 @@ extension PrizesListInteractor: PrizesListInteracting {
             return
         }
         
-        persistenceService.updateRecord(entity: entity)
+        updateRecord(entity: entity)
         
-        var prizes = persistenceService.fetchSelectedObjects()
-        let prizesAmount = prizes.map { $0.price }.reduce(0, +)
+        let predicate = NSPredicate(format: "isSelected == %@", NSNumber(value: true))
+        var selectedPrizes = persistenceService.fetch(with: predicate)
+        let prizesAmount = selectedPrizes.map { $0.price }.reduce(0, +)
         
         guard prizesAmount > maxAvailableAmount else {
             output.updateAvailableAmount(amount: availableAmount())
@@ -91,11 +92,11 @@ extension PrizesListInteractor: PrizesListInteracting {
         
         var overcharges = prizesAmount - maxAvailableAmount
         
-        prizes = prizes.filter { $0 != entity }
+        selectedPrizes = selectedPrizes.filter { $0 != entity }
         
-        for prize in prizes {
+        for prize in selectedPrizes {
             overcharges -= prize.price
-            persistenceService.updateRecord(entity: prize)
+            updateRecord(entity: prize)
             guard overcharges <= 0 else { continue }
             break
         }
@@ -124,9 +125,16 @@ extension PrizesListInteractor: PrizesListInteracting {
 private extension PrizesListInteractor {
     
     func availableAmount() -> Double {
-        let prizes = persistenceService.fetchSelectedObjects()
+        let predicate = NSPredicate(format: "isSelected == %@", NSNumber(value: true))
+        let prizes = persistenceService.fetch(with: predicate)
         let prizesAmount = prizes.map { $0.price }.reduce(0, +)
         let availableAmount = maxAvailableAmount - prizesAmount
         return availableAmount
+    }
+    
+    func updateRecord(entity: PrizesListInteractor.Entity) {
+        var mutableEntity = entity
+        mutableEntity.isSelected.toggle()
+        persistenceService.updateRecord(entity: mutableEntity)
     }
 }

@@ -12,8 +12,8 @@ protocol PersistenceStore: AnyObject {
     func fetch(at indexPath: IndexPath) -> PrizesListInteractor.Entity
     func save(entity: PrizesListInteractor.Entity)
     func delete(at indexPath: IndexPath)
-    
-    func fetchSelectedObjects() -> [PrizesListInteractor.Entity]
+        
+    func fetch(with predicate: NSPredicate) -> [PrizesListInteractor.Entity]
     
     func updateRecord(entity: PrizesListInteractor.Entity)
     
@@ -95,17 +95,14 @@ extension PersistenceService: PersistenceStore {
         }
     }
     
-    func fetchSelectedObjects() -> [PrizesListInteractor.Entity] {
+    func fetch(with predicate: NSPredicate) -> [PrizesListInteractor.Entity] {
         var result: [PrizesListInteractor.Entity] = []
-        
-        let predicate = NSPredicate(format: "isSelected == %@", NSNumber(value: true))
         performFetch(with: predicate)
-    
+        
         let fetchedObjects = fetchedResultsController.fetchedObjects
         performFetch()
         
         fetchedObjects?.forEach {
-            
             let entity: PrizesListInteractor.Entity = .init(
                 name: $0.name ?? "",
                 price: $0.price,
@@ -128,7 +125,9 @@ extension PersistenceService: PersistenceStore {
         }
         
         performFetch()
-        object.isSelected.toggle()
+        object.isSelected = entity.isSelected
+        object.name = entity.name
+        object.price = entity.price
         saveMainMOC()
     }
     
@@ -139,8 +138,8 @@ extension PersistenceService: PersistenceStore {
         
         mainMOC.performAndWait {
             do {
-                let fetchedObjects = try self.mainMOC.fetch(fetchRequest)
-                isEmpty = fetchedObjects.isEmpty
+                let count = try self.mainMOC.count(for: fetchRequest)
+                isEmpty = count == 0
             } catch {
                 print(error)
             }
